@@ -1,0 +1,71 @@
+body
+{
+	padding-top: 52px;
+}
+
+.balance
+{
+	
+	border-top: 1px solid gray !important;
+	border-bottom: 3px double gray !important;
+}
+
+.font-size-sm
+{
+	font-size: 0.75rem;
+}
+
+.header
+{
+	background-color: white; 
+	padding: 0.5rem; 
+	position: fixed; 
+	width: 100%; 
+	z-index: 1000;
+	top: 0;
+}
+
+.hr-custom
+{
+	border-width: 0.4rem
+}
+
+.hr-dotted
+{
+	border: none; 
+	border-bottom: 7px dotted #c3c3c3; 
+	width:50%;
+}
+
+.left-bar
+{
+	background-color: #f2f4f8; 
+	height: 100vh; 
+	max-width: 250px; 
+	overflow-y: scroll;
+	position: fixed;
+}
+
+.lb-li
+{
+	border-bottom: 1px solid #fff;
+	color: #788288; 
+	font-size: 0.85rem; 
+	padding: 0.5rem; 
+}
+
+.lb-li-active
+{
+	background-color: #003560; 
+	border-bottom: 1px solid #eaeef1;
+	color: #fff; 
+	font-size: 0.85rem; 
+	padding: 0.5rem; 
+}
+
+.right-bar
+{
+	margin-left: 250px;
+	padding: 1rem;
+	width: 100% - 200px; 
+}

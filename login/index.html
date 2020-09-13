@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta 
+			charset="utf-8" />
+
+		<meta 
+			name="viewport" 
+			content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+		<link 
+			rel="apple-touch-icon" 
+			href="https://dctprime.com/images/apple-touch-icon.png" />
+
+		<link 
+			rel="icon" sizes="192x192" 
+			href="https://dctprime.com/images/icon-hires.png" />
+
+		<link 
+			rel="icon" sizes="128x128" 
+			href="https://dctprime.com/images/icon-normal.png" />
+
+		<link 
+			rel="stylesheet" 
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" 
+			crossorigin="anonymous" />
+
+		<link 
+			rel="stylesheet" 
+			href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" 
+			integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" 
+			crossorigin="anonymous" />
+
+		<link 
+			rel="stylesheet" 
+			href="styles.css" />
+
+		<title>Inicia sesión</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 mx-auto">
+					<div class="card shadow-sm">
+						<div class="card-body p-4">
+							<img src="https://dctprime.com/images/icon-normal.png" class="d-block mx-auto mb-4" alt="DCT Prime logo">
+							<p class="text-center h4">Acceder</p>
+							<p class="text-center h6 mb-4">Intranet DCT Prime</p>
+							<form id="login">
+								<div class="form-group">
+									<div class="input-group input-group-lg">
+										<div class="input-group-prepend">
+											<span class="input-group-text bg-white">
+												<i class="far fa-user"></i>
+											</span>
+										</div>
+
+										<input type="text" class="form-control rounded-right" autocomplete="off" placeholder="Usuario" name="usuario" required>
+
+										<div class="invalid-feedback">
+											Ingresa un usuario válido.
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group input-group-lg">
+										<div class="input-group-prepend">
+											<span class="input-group-text bg-white">
+												<i class="fas fa-key"></i>
+											</span>
+										</div>
+										
+										<input type="password" class="form-control rounded-right" autocomplete="off" placeholder="Contraseña" name="contraseña" required>
+
+										<div class="invalid-feedback">
+											Ingresa una contraseña válida.
+										</div>
+									</div>
+								</div>
+								<button class="btn btn-success btn-lg btn-block mt-5">Inicia sesión</button>
+							</form>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="functions.js"></script>
+	</body>
+</html>
