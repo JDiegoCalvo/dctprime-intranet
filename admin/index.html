@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta 
+			charset="utf-8" />
+
+		<meta 
+			name="viewport" 
+			content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+		<link 
+			rel="apple-touch-icon" 
+			href="https://dctprime.com/images/apple-touch-icon.png" />
+
+		<link 
+			rel="icon" sizes="192x192" 
+			href="https://dctprime.com/images/icon-hires.png" />
+
+		<link 
+			rel="icon" sizes="128x128" 
+			href="https://dctprime.com/images/icon-normal.png" />
+
+		<link 
+			rel="stylesheet" 
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+			integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+			crossorigin="anonymous" />
+
+		<title>Admin</title>
+	</head>
+	<body>
+		<main>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="card">
+							<h5 class="card-header">Agregar enlace</h5>
+							<div class="card-body">
+								<form id="agregar_enlace_form">
+									<div class="form-group">
+										<label>URL</label>
+										<input type="text" class="form-control" autocomplete="off" name="place" required>
+									</div>
+									<div class="form-group">
+										<label>Título</label>
+										<input type="text" class="form-control" autocomplete="off" name="name" required>
+									</div>
+									<button class="btn btn-primary">Agregar enlace</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<script>
+			const agregar_enlace_form = document.getElementById( 'agregar_enlace_form' );
+
+			agregar_enlace_form.onsubmit = function( e )
+			{
+				e.preventDefault();
+
+				const data = new FormData( this );
+				
+				fetch( 'https://dctprime.com/admin/scripts/agregar_enlace.php', {
+					method : 'POST',
+					body   : data
+				});
+
+				alert( 'Enlace agregado.' );
+			};
+		</script>
+	</body>
+</html>

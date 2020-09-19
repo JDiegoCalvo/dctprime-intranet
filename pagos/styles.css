@@ -1,0 +1,169 @@
+.fixed-centered
+{
+	height: 300px; 
+	left: 50%; 
+	margin-left: -150px; 
+	margin-top: 5rem;
+	position: fixed; 
+	top: 0; 
+	width: 300px; 
+	z-index: 100; 
+}
+
+.pre-input
+{
+	background: transparent; 
+	border: none;
+}
+
+.font-size-lg
+{
+	font-size: 22px;
+}
+
+.background 
+{
+	background-image: url( 'conference-room-768441_1280.jpg' );
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	filter: brightness( 0.7 ) blur( 6px );
+	height: 100vh;
+	width: 100%;
+}
+
+.input-custom
+{
+	background: transparent;
+	border: none;
+	color: white;
+	font-size: 22px;
+}
+
+.input-custom::placeholder 
+{
+	color: #495057;
+	font-size: 22px;
+	font-weight: bolder;
+}
+
+.input-custom:focus 
+{
+	background: transparent;
+	border: none;
+	color: white;
+	outline: none !important;
+	outline-width: 0 !important;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
+.tr-border
+{
+	border-bottom: 1px solid rgba( 0, 0, 0, 0.1 );
+}
+
+.w-45
+{
+	width: 45px;
+}
+
+.span-b
+{
+	font-size: 12px; 
+	line-height: 0px;
+}
+
+.span-c
+{
+	font-size: 22px; 
+	line-height: 0px;
+}
+
+.span-d
+{
+	font-size: 14px; 
+	line-height: 0px;
+}
+
+.font-size-sm
+{
+	font-size: 12px;
+}
+
+.p-top
+{
+	font-size: 14px; 
+	font-weight: bold; 
+	text-align: center;
+}
+
+.bw-2
+{
+	border-width: 2px;
+}
+
+.canvas
+{
+	height: 187.50px;
+	width: 100%; 
+}
+
+.gray-div
+{
+	background-color: rgba( 0, 0, 0, 0.1 ); 
+	border-bottom: 2px solid rgba( 0, 0, 0, 0.1 ); 
+	border-top: 2px solid rgba( 0, 0, 0, 0.1 );
+	height: 75px; 
+	width: 100%; 
+}
+
+.float-left
+{
+	float: left;
+}
+
+.float-right
+{
+	float: right;
+}
+
+.btn-month-active
+{
+	background-color: rgba( 0, 0, 0, 0.15 ); 
+	border-radius: 5px;
+	color: rgba( 0, 0, 0, 0.3 ); 
+	font-size: 12px; 
+	font-weight: 500; 
+	padding-left: 10px; 
+	padding-right: 10px; 
+}
+
+.btn-month
+{
+	border-radius: 5px;
+	color: rgba( 0, 0, 0, 0.3 ); 
+	font-size: 12px; 
+	font-weight: 500; 
+	padding-left: 10px; 
+	padding-right: 10px; 
+}
+
+.menu-options
+{
+	font-size: 16px; 
+	font-weight: bolder; 
+	margin-bottom: 0;
+	text-align: center; 
+}
+
+.option
+{
+	border-bottom: 2px solid rgba( 0, 0, 0, 0.1 );
+}
+
+.option-active
+{
+	border-bottom: 5px solid #28a745;
+}

@@ -1,0 +1,26 @@
+{
+	"name": "Pagos",
+	"short_name": "Pagos",
+	"lang": "es-MX",
+	"start_url": "/",
+	"background_color": "#00AAE6",
+	"theme_color": "#00AAE6",
+	"display": "standalone",
+	"icons": [
+		{
+			"src": "https://dctprime.com/images/apple-touch-icon.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "https://dctprime.com/images/icon-hires.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "https://dctprime.com/images/icon-normal.png",
+			"type": "image/png",
+			"sizes": "128x128"
+		}
+	]
+}

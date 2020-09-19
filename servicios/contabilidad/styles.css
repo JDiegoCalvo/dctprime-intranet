@@ -1,0 +1,112 @@
+#start
+{
+	background: url( 'https://dctprime.com/images/cover.png' ) no-repeat center top; 
+	background-size: cover; 
+	position: relative;
+	width: 100%; 
+}
+
+#start-child
+{
+	left: 50%; 
+	position: absolute; 
+	top: 50%; 
+	transform: translate( -50%, -50% );
+}
+
+.cover { background: linear-gradient( 180deg, #0f171f 31%, #1f3040 100%, #fff 0 ); }
+
+.email { background: rgb( 170, 170, 170 ); }
+
+.facebook { background: rgb( 59, 89, 152 ); }
+
+.linkedin { background: rgb( 0, 123, 182 ); }
+
+.list-style-none { list-style: none; }
+
+.overflow-scroll { overflow: scroll; }
+
+.pinterest { background: rgb( 203, 32, 39 ); }
+
+.share-navbar
+{
+	list-style: none;
+	padding-left: 0;
+	position: fixed;
+	text-align: center;
+	width: 100%;
+	z-index: 10000;
+}
+
+.share-navbar img
+{
+	height: 30px;
+	width: 30px;
+}
+
+.share-navbar li
+{
+	border-radius: 50%;
+	height: 50px;
+	padding: 10px;
+	width: 50px;
+}
+
+.social-navbar img
+{
+	height: 30px;
+	width: 30px;
+}
+
+.social-navbar li
+{
+	border-radius: 50%;
+	height: 50px;
+	padding: 10px;
+	width: 50px;
+}
+
+.twitter { background: rgb( 0, 172, 237 ); }
+
+.whatsapp { background: rgb( 29, 158, 17 ); }
+
+@media ( min-width: 768px )
+{
+	body { padding-top: 75px; }
+
+	#start { height: 100vh; }
+
+	.h4-mobile
+	{
+		font-size: 2.5rem;
+		margin-bottom: 0;
+	}
+
+	.share-navbar
+	{
+		left: 20px;
+		top: 85px;
+		width: 50px;
+	}
+
+	.share-navbar li { margin-bottom: 0.35rem; }
+}
+
+@media ( max-width: 768px )
+{
+	body { padding-top: 53px; }
+
+	#start { height: 130vh; }
+
+	.h4-mobile
+	{
+		font-size: 1.5rem;
+		margin-bottom: 0;
+	}
+
+	.hide-mobile { display: none !important; }
+
+	.share-navbar { bottom: 0; }
+
+	.share-navbar li { display: inline-block; }
+}

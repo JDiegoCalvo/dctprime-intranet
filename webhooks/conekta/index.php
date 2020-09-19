@@ -1,0 +1,107 @@
+<?php
+	include '../../con_intranet.php';
+	include '../../api_key_conekta.php';
+	include '../../api_key_facturapi.php';
+
+	$body = @file_get_contents( 'php://input' );
+	$data = json_decode( $body );
+	http_response_code( 200 ); // Return 200 OK 
+
+	if ( $data->type == 'charge.paid' )
+	{
+		$conekta = $data->data->object->customer_id;
+		$msg     = "Tu pago ha sido comprobado. " . $data->data->object->customer_id;
+
+		mail( "jd.calvo@dctprime.com", "Pago confirmado", $msg );
+
+		$url    = 'https://api.conekta.io/orders/' . $data->data->object->order_id;
+		$ApiKey = base64_encode( $api_key_conekta );
+
+		$ch = curl_init();
+		curl_setopt( $ch, CURLOPT_URL, $url );
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+		curl_setopt( $ch, CURLOPT_HTTPHEADER, [
+			'Accept: application/vnd.conekta-v2.0.0+json',
+			'Authorization: Basic ' . $ApiKey,
+			'Content-type: application/json'
+		]);
+
+		$output = curl_exec( $ch );
+		curl_close( $ch );
+
+		$b = json_decode( $output, false );
+		$data = $b->line_items->data;
+
+		$l = count( $data );
+
+		$related = array();
+
+		for ( $i = 0; $i < $l; $i++ )
+		{
+			$amount = ( floatval( $data[$i]->unit_price ) / 100 ); // Importante para quitar decimales
+
+			array_push( $related, array(
+				'uuid'         => $data[$i]->name,
+				'installment'  => 1,
+				'last_balance' => $amount,
+				'amount'       => $amount
+			));
+
+			$uuid = $data[$i]->name;
+
+			$query = "SELECT 
+				saldo_insoluto
+
+			FROM ventas 
+
+			WHERE 
+
+			uuid = '$uuid'";
+
+			$saldo_insoluto = floatval( $mysql->query( $query )->fetch_object()->saldo_insoluto );
+
+			$nuevo_saldo = $saldo_insoluto - $amount; 
+
+			$query = "UPDATE ventas SET saldo_insoluto = '$nuevo_saldo' WHERE uuid = '$uuid'";
+			$mysql->query( $query );
+		}
+
+		$url    = 'https://www.facturapi.io/v1/invoices';
+		$ApiKey = base64_encode( $api_key_facturapi );
+
+		$query = "SELECT 
+			facturapi
+
+		FROM clientes 
+
+		WHERE 
+
+		conekta = '$conekta'";
+
+		$customer = $mysql->query( $query )->fetch_object()->facturapi;
+
+		$body = [
+			"type" => "P",
+			"customer" => $customer,
+			"payments" => [
+				[
+					"payment_form" => "06",
+					"related" => $related
+				]
+			]
+		];
+
+		$ch = curl_init();
+		curl_setopt( $ch, CURLOPT_POST, true );
+		curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $body ) );
+		curl_setopt( $ch, CURLOPT_URL, $url );
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+		curl_setopt( $ch, CURLOPT_HTTPHEADER, [
+			'Authorization: Basic ' . $ApiKey,
+			'Content-Type: application/json'
+		]);
+
+		$output = curl_exec( $ch );
+		curl_close( $ch );
+	}
+?>
