@@ -1,7 +1,7 @@
 <?php
 	include '../../../con_intranet.php';
 
-	$customer = '5f61b59ce49549002635dbce';
+	$customer = $_POST['cliente'];
 
 	$data = array();
 

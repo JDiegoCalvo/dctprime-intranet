@@ -42,11 +42,22 @@ function actualizar_saldo()
 	document.querySelector( '#saldo_total' ).innerHTML = numeral( pago - facturas ).format( '$0,0.00' );
 }
 
-facturas_pendientes();
+function actualizar_pantalla()
+{
+	facturas_pendientes();
+
+	pagos_recibidos();
+}
 
 function facturas_pendientes()
 {
-	fetch( 'scripts/facturas_pendientes.php' )
+	var data = new FormData();
+		data.append( 'cliente', document.querySelector( '#customer' ).value );
+
+	fetch( 'scripts/facturas_pendientes.php', {
+		method : 'POST',
+		body   : data
+	})
 	.then( res => res.json() )
 	.then( r   => 
 	{
@@ -67,11 +78,15 @@ function facturas_pendientes()
 	});
 }
 
-pagos_recibidos();
-
 function pagos_recibidos()
 {
-	fetch( 'scripts/pagos_recibidos.php' )
+	var data = new FormData();
+		data.append( 'cliente', document.querySelector( '#customer' ).value );
+
+	fetch( 'scripts/pagos_recibidos.php', {
+		method : 'POST',
+		body   : data
+	})
 	.then( res => res.json() )
 	.then( r   => 
 	{
@@ -150,6 +165,17 @@ function init()
 		{
 			document.querySelector( '#clientes' ).innerHTML += `
 				<option value="${ r[i].RFC }">${ r[i].cliente }</option>
+			`;
+		}
+
+		document.querySelector( '#customer' ).innerHTML += `
+			<option>Selecciona</option>
+		`;
+
+		for ( var i = 0; i < r.length; i++ )
+		{
+			document.querySelector( '#customer' ).innerHTML += `
+				<option value="${ r[i].conekta }">${ r[i].cliente }</option>
 			`;
 		}
 	});

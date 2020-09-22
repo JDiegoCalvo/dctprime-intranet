@@ -8,7 +8,8 @@
 		denominacion, 
 		nombre, 
 		primer_apellido, 
-		segundo_apellido 
+		segundo_apellido,
+		conekta
 
 	FROM clientes 
 
@@ -22,17 +23,19 @@
 		{
 			array_push( $data, array( 
 				'RFC'     => $row['RFC'],
-				'cliente' => $row['RFC'] . ' - ' . $row['denominacion'] 
+				'cliente' => $row['RFC'] . ' - ' . $row['denominacion'],
+				'conekta' => $row['conekta']
 			));
 		}else
 		{
 			array_push( $data, array(
 				'RFC'     => $row['RFC'],
 				'cliente' => 
-							 $row['RFC'] . ' - ' . 
-							 $row['nombre'] . ' ' .
+							 $row['RFC']             . ' - ' . 
+							 $row['nombre']          . ' ' .
 							 $row['primer_apellido'] . ' ' .
-							 $row['segundo_apellido'] 
+							 $row['segundo_apellido'],
+				'conekta' => $row['conekta']
 			));
 		}
 	}

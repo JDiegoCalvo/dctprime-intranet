@@ -1,6 +1,17 @@
 <?php
 	include '../../../con_intranet.php';
 
+	$customer = $_POST['cliente'];
+
+	$query = "SELECT
+		ID 
+
+	FROM clientes 
+
+	WHERE conekta = '$customer'";
+
+	$cliente = $mysql->query( $query )->fetch_object()->ID;
+
 	$data = array();
 
 	$query = "SELECT 
@@ -12,7 +23,7 @@
 
 	WHERE 
 
-	cliente = '1' AND 
+	cliente = '$cliente' AND 
 	uuid   != ''
 
 	ORDER BY fecha ASC";
