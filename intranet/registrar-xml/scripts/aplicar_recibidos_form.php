@@ -1,6 +1,6 @@
 <?php
-	include '../../connection.php';
-
+	include '../../../con_intranet.php';
+	
 	include 'funciones.php';
 
 	date_default_timezone_set( 'America/Mexico_City' );

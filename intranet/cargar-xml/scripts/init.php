@@ -1,5 +1,5 @@
 <?php
-	include '../../connection.php';
+	include '../../../con_intranet.php';
 
 	$data = array();
 
@@ -29,8 +29,8 @@
 			array_push( $data, array(
 				'RFC'     => $row['RFC'],
 				'cliente' => 
-							 $row['RFC'] . ' - ' . 
-							 $row['nombre'] . ' ' .
+							 $row['RFC']             . ' - ' . 
+							 $row['nombre']          . ' ' .
 							 $row['primer_apellido'] . ' ' .
 							 $row['segundo_apellido'] 
 			));
