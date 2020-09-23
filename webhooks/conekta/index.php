@@ -16,11 +16,11 @@
 
 		mail( "jd.calvo@dctprime.com", "Pago confirmado", $msg );
 
-		// $json_string = json_encode($data);
-		// $file = 'clientes.json';
-		// file_put_contents($file, $json_string);
+		$json_string = json_encode($data);
+		$file = 'clientes.json';
+		file_put_contents($file, $json_string);
 
-		if ( $data->data->object->payment_method->object == 'bank_transfer_payment' )
+		if ( $data->data->object->payment_method->object == 'bank_transfer_payment' OR $data->data->object->payment_method->object == 'cash_payment' )
 		{
 			$date = date( 'Y-m-d H:i:s' );
 			$amount = floatval( $data->data->object->amount ) / 100;

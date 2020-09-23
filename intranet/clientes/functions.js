@@ -52,6 +52,28 @@ function clientes()
 						`;
 					}
 
+					if ( r[i].conekta !== '' )
+					{
+						if ( r[i].oxxo_recurrente !== '' )
+						{
+							HTML += `
+								<td>${ r[i].oxxo_recurrente }</td>
+							`;
+						}else
+						{
+							HTML += `
+								<td>
+									<button class="btn btn-link font-size-sm" onclick="oxxo_recurrente( '${ r[i].RFC }' );">OXXO referencia</button>
+								</td>
+							`;
+						}
+					}else
+					{
+						HTML += `
+							<td></td>
+						`;
+					}
+
 				HTML += `</tr>
 			`;
 
@@ -93,6 +115,24 @@ function spei_recurrente( RFC )
 		clientes();
 
 		alert( 'CLABE de referencia generada.' );
+	});	
+}
+
+function oxxo_recurrente( RFC )
+{
+	var data = new FormData();
+		data.append( 'RFC', RFC );
+
+	fetch( 'scripts/oxxo_recurrente.php', 
+	{
+		method : 'POST',
+		body   : data
+	})
+	.then( r   => 
+	{
+		clientes();
+
+		alert( 'Referencia de OXXO generada.' );
 	});	
 }
 

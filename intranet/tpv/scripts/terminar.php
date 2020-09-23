@@ -181,27 +181,35 @@
 
 	$mysql->query( $query );
 
-	$m = [
-		null, 'Enero', 'Febrero',
-		'Marzo', 'Abril', 'Mayo',
-		'Junio', 'Julio', 'Agosto',
-		'Septiembre', 'Octubre', 'Noviembre',
-		'Diciembre'
-	];
-
-	$l = count( $m );
-
-	for ( $i = 0; $i < $l; $i++ )
+	if ( $periodo == 'Sin periodo' )
 	{
-		if ( intval( $periodo ) == $i )
+		$per = $periodo;
+
+		$fecha_limite = 'Inmediatamente'; 
+	}else
+	{
+		$m = [
+			null, 'Enero', 'Febrero',
+			'Marzo', 'Abril', 'Mayo',
+			'Junio', 'Julio', 'Agosto',
+			'Septiembre', 'Octubre', 'Noviembre',
+			'Diciembre'
+		];
+
+		$l = count( $m );
+
+		for ( $i = 0; $i < $l; $i++ )
 		{
-			$per = $m[$i] . ' - ' . $ejercicio;
+			if ( intval( $periodo ) == $i )
+			{
+				$per = $m[$i] . ' - ' . $ejercicio;
+			}
 		}
+
+		$fecha_a_usar = $ejercicio . '-'. $periodo . '-01';
+
+		$fecha_limite = date( 'Y-m-d', strtotime( $fecha_a_usar . "+ 47 days" ) ); 
 	}
-
-	$fecha_a_usar = $ejercicio . '-'. $periodo . '-01';
-
-	$fecha_limite = date( 'Y-m-d', strtotime( $fecha_a_usar . "+ 47 days" ) ); 
 
 	$query = "INSERT INTO ventas ( 
 		fecha, 

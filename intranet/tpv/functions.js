@@ -51,31 +51,34 @@ function actualizar_pantalla()
 
 function facturas_pendientes()
 {
-	var data = new FormData();
-		data.append( 'cliente', document.querySelector( '#customer' ).value );
-
-	fetch( 'scripts/facturas_pendientes.php', {
-		method : 'POST',
-		body   : data
-	})
-	.then( res => res.json() )
-	.then( r   => 
+	if ( document.querySelector( '#customer' ).value !== 'Selecciona' )
 	{
-		document.querySelector( '#table_facturas_pendientes tbody' ).innerHTML = '';
+		var data = new FormData();
+			data.append( 'cliente', document.querySelector( '#customer' ).value );
 
-		for ( var i = 0; i < r.length; i++ )
+		fetch( 'scripts/facturas_pendientes.php', {
+			method : 'POST',
+			body   : data
+		})
+		.then( res => res.json() )
+		.then( r   => 
 		{
-			document.querySelector( '#table_facturas_pendientes tbody' ).innerHTML += `
-				<tr>
-					<td>${ r[i].fecha }</td>
-					<td class="text-right">${ numeral( r[i].importe ).format( '$0,0.00' ) }</td>
-					<td>
-						<input type="checkbox" onclick="actualizar_facturas( ${ r[i].importe }, '${ i }', '${ r[i].uuid }' );" id="cb_saldo_${ i }">
-					</td>
-				</tr>
-			`;
-		}
-	});
+			document.querySelector( '#table_facturas_pendientes tbody' ).innerHTML = '';
+
+			for ( var i = 0; i < r.length; i++ )
+			{
+				document.querySelector( '#table_facturas_pendientes tbody' ).innerHTML += `
+					<tr>
+						<td>${ r[i].fecha }</td>
+						<td class="text-right">${ numeral( r[i].importe ).format( '$0,0.00' ) }</td>
+						<td>
+							<input type="checkbox" onclick="actualizar_facturas( ${ r[i].importe }, '${ i }', '${ r[i].uuid }' );" id="cb_saldo_${ i }">
+						</td>
+					</tr>
+				`;
+			}
+		});
+	}
 }
 
 function pagos_recibidos()
@@ -183,12 +186,19 @@ function init()
 
 function ventas()
 {
-	fetch( 'scripts/ventas.php' )
+	var myHeaders = new Headers();
+		myHeaders.append( 'pragma', 'no-cache' );
+		myHeaders.append( 'cache-control', 'no-cache' );
+
+	fetch( 'scripts/ventas.php', {
+		method: 'GET',
+		headers: myHeaders,
+	})
 	.then( res => res.json() )
 	.then( r   => 
 	{
 		document.querySelector( '#table_ventas tbody' ).innerHTML = '';
-
+		console.log(r)
 		for ( var i = 0; i < r.length; i++ )
 		{
 			document.querySelector( '#table_ventas tbody' ).innerHTML += `

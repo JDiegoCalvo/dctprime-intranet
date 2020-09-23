@@ -12,7 +12,8 @@
 		segundo_apellido,
 		facturapi,
 		conekta,
-		spei_recurrente
+		spei_recurrente,
+		oxxo_recurrente
 
 	FROM clientes 
 
@@ -30,7 +31,8 @@
 				'nombre'       => $row['denominacion'],
 				'facturapi'    => $row['facturapi'],
 				'conekta'      => $row['conekta'],
-				'spei_recurrente' => $row['spei_recurrente']
+				'spei_recurrente' => $row['spei_recurrente'],
+				'oxxo_recurrente' => $row['oxxo_recurrente']
 			));
 		}else
 		{
@@ -42,7 +44,8 @@
 								  $row['segundo_apellido'],
 				'facturapi'    => $row['facturapi'],
 				'conekta'      => $row['conekta'],
-				'spei_recurrente' => $row['spei_recurrente']
+				'spei_recurrente' => $row['spei_recurrente'],
+				'oxxo_recurrente' => $row['oxxo_recurrente']
 			));
 		}
 	}
