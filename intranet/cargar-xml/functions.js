@@ -1,4 +1,4 @@
-init();
+check_cookie();
 
 alertify.set( 'notifier','position', 'top-right' );
 
@@ -11,6 +11,9 @@ document.querySelector( '.custom-file-input' ).addEventListener( 'change', funct
 
 function init()
 {
+ 	document.getElementById( 'root_div' ).classList.add( 'd-none' );
+	document.getElementById( 'loader' ).classList.remove( 'd-none' );
+
 	var a_input = document.querySelectorAll( '.a_input' );
 
 	for ( var i = 0; i < a_input.length; i++ ) 
@@ -37,6 +40,9 @@ function init()
 				<option value="${ r[i].RFC }">${ r[i].cliente }</option>
 			`;
 		}
+
+	 	document.getElementById( 'root_div' ).classList.remove( 'd-none' );
+		document.getElementById( 'loader' ).classList.add( 'd-none' );
 	});
 }
 
@@ -229,3 +235,60 @@ document.querySelector( '#traer_del_servidor_form' ).addEventListener( 'submit',
 		document.getElementById( 'loader' ).classList.add( 'd-none' );
 	});
 });
+
+function get_cookie ( cname ) 
+{
+	var name = cname + '=';
+	var decodedCookie = decodeURIComponent( document.cookie );
+	var ca = decodedCookie.split( ';' );
+	for ( var i = 0; i < ca.length; i++ ) 
+	{
+		var c = ca[i];
+		while ( c.charAt( 0 ) == ' ' ) 
+		{
+			c = c.substring( 1 );
+		}
+		if ( c.indexOf( name ) == 0 ) 
+		{
+			return c.substring( name.length, c.length );
+		}
+	}
+
+	return '';
+}
+
+function check_cookie() 
+{
+	var sesion = get_cookie( 'sesion' );
+
+	if ( sesion != '' ) 
+	{
+		var data = new FormData();
+			data.append( 'sesion', sesion );
+
+		fetch( 'scripts/check_cookie.php', 
+		{
+			method : 'POST',
+			body   : data
+ 		})
+ 		.then( res => res.text() )
+ 		.then( no_cookie => 
+ 		{
+ 			if ( no_cookie )
+ 			{
+ 				window.location.href = 'https://dctprime.com/intranet/login';
+ 			}else
+ 			{
+			 	init();
+ 			}
+ 		})
+	}else
+	{
+		window.location.href = 'https://dctprime.com/intranet/login';
+	}
+}
+
+function delete_cookie ( cname ) 
+{
+    return document.cookie = cname + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+}

@@ -43,53 +43,61 @@
 		<title>Clientes</title>
 	</head>
 	<body>
-		<div class="card" style="width: 400px;">
-			<div class="card-body">
-				<form id="guardar_cliente">
-					<div class="form-row">
-						<div class="form-group col-md-5">
-							<input type="text" class="form-control form-control-sm" autocomplete="off" maxlength="13" name="RFC" id="RFC" placeholder="RFC" required>
-						</div>
-						<div class="form-group col-md-7">
-							<input type="text" class="form-control form-control-sm" autocomplete="off" name="denominacion" id="denominacion" placeholder="Denominación">
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="form-group col-md-4">
-							<input type="text" class="form-control form-control-sm" autocomplete="off" name="nombre" id="nombre" placeholder="Nombre">
-						</div>
-						<div class="form-group col-md-4">
-							<input type="text" class="form-control form-control-sm" autocomplete="off" name="primer_apellido" id="primer_apellido" placeholder="1er apellido">
-						</div>
-						<div class="form-group col-md-4">
-							<input type="text" class="form-control form-control-sm" autocomplete="off" name="segundo_apellido" id="segundo_apellido" placeholder="2do apellido">
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<input type="tel" class="form-control form-control-sm" autocomplete="off" name="telefono" id="telefono" placeholder="Teléfono" required>
-						</div>
-						<div class="form-group col-md-6">
-							<input type="email" class="form-control form-control-sm" autocomplete="off" name="email" id="email" placeholder="Email" required>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<input type="text" class="form-control form-control-sm" autocomplete="off" name="CIEC" id="CIEC" placeholder="CIEC">
-						</div>
-						<div class="form-group col-md-6">
-							<input type="text" class="form-control form-control-sm" autocomplete="off" name="claveFIEL" id="claveFIEL" placeholder="Clave FIEL">
-						</div>
-					</div>
-					<button class="btn btn-info btn-block">Guardar</button>
-				</form>
+		<div id="loader">
+			<div class="loader">
+				<i class="fas fa-cog fa-spin fa-5x"></i>
 			</div>
 		</div>
 
-		<div class="container">
-			<table class="table table-sm font-size-sm" id="table_clientes">
-				<tbody></tbody>
-			</table>
+		<div id="root_div" class="d-none">
+			<div class="card" style="width: 400px;">
+				<div class="card-body">
+					<form id="guardar_cliente">
+						<div class="form-row">
+							<div class="form-group col-md-5">
+								<input type="text" class="form-control form-control-sm" autocomplete="off" maxlength="13" name="RFC" id="RFC" placeholder="RFC" required>
+							</div>
+							<div class="form-group col-md-7">
+								<input type="text" class="form-control form-control-sm" autocomplete="off" name="denominacion" id="denominacion" placeholder="Denominación">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<input type="text" class="form-control form-control-sm" autocomplete="off" name="nombre" id="nombre" placeholder="Nombre">
+							</div>
+							<div class="form-group col-md-4">
+								<input type="text" class="form-control form-control-sm" autocomplete="off" name="primer_apellido" id="primer_apellido" placeholder="1er apellido">
+							</div>
+							<div class="form-group col-md-4">
+								<input type="text" class="form-control form-control-sm" autocomplete="off" name="segundo_apellido" id="segundo_apellido" placeholder="2do apellido">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<input type="tel" class="form-control form-control-sm" autocomplete="off" name="telefono" id="telefono" placeholder="Teléfono" required>
+							</div>
+							<div class="form-group col-md-6">
+								<input type="email" class="form-control form-control-sm" autocomplete="off" name="email" id="email" placeholder="Email" required>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<input type="text" class="form-control form-control-sm" autocomplete="off" name="CIEC" id="CIEC" placeholder="CIEC">
+							</div>
+							<div class="form-group col-md-6">
+								<input type="text" class="form-control form-control-sm" autocomplete="off" name="claveFIEL" id="claveFIEL" placeholder="Clave FIEL">
+							</div>
+						</div>
+						<button class="btn btn-info btn-block">Guardar</button>
+					</form>
+				</div>
+			</div>
+
+			<div class="container">
+				<table class="table table-sm font-size-sm" id="table_clientes">
+					<tbody></tbody>
+				</table>
+			</div>
 		</div>
 
 		<script 

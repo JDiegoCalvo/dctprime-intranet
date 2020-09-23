@@ -1,7 +1,10 @@
-clientes();
+check_cookie();
 
 function clientes()
-{
+{	
+ 	document.getElementById( 'root_div' ).classList.add( 'd-none' );
+	document.getElementById( 'loader' ).classList.remove( 'd-none' );
+
 	var data = new FormData();
 
 	fetch( 'scripts/clientes.php', 
@@ -78,6 +81,9 @@ function clientes()
 			`;
 
 			document.querySelector( '#table_clientes tbody' ).innerHTML = HTML;
+
+		 	document.getElementById( 'root_div' ).classList.remove( 'd-none' );
+			document.getElementById( 'loader' ).classList.add( 'd-none' );
 		}
 	});	
 }
@@ -170,3 +176,60 @@ document.querySelector( '#guardar_cliente' ).addEventListener( 'submit', functio
 		document.querySelector( '#RFC' ).select();
 	});
 });
+
+function get_cookie ( cname ) 
+{
+	var name = cname + '=';
+	var decodedCookie = decodeURIComponent( document.cookie );
+	var ca = decodedCookie.split( ';' );
+	for ( var i = 0; i < ca.length; i++ ) 
+	{
+		var c = ca[i];
+		while ( c.charAt( 0 ) == ' ' ) 
+		{
+			c = c.substring( 1 );
+		}
+		if ( c.indexOf( name ) == 0 ) 
+		{
+			return c.substring( name.length, c.length );
+		}
+	}
+
+	return '';
+}
+
+function check_cookie() 
+{
+	var sesion = get_cookie( 'sesion' );
+
+	if ( sesion != '' ) 
+	{
+		var data = new FormData();
+			data.append( 'sesion', sesion );
+
+		fetch( 'scripts/check_cookie.php', 
+		{
+			method : 'POST',
+			body   : data
+ 		})
+ 		.then( res => res.text() )
+ 		.then( no_cookie => 
+ 		{
+ 			if ( no_cookie )
+ 			{
+ 				window.location.href = 'https://dctprime.com/intranet/login';
+ 			}else
+ 			{
+ 				clientes();
+ 			}
+ 		})
+	}else
+	{
+		window.location.href = 'https://dctprime.com/intranet/login';
+	}
+}
+
+function delete_cookie ( cname ) 
+{
+    return document.cookie = cname + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+}
