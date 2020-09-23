@@ -31,6 +31,11 @@
 			href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" 
 			integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" 
 			crossorigin="anonymous" />
+
+		<link 
+			rel="stylesheet" 
+			href="styles.css" />
+
 		<link 
 			rel="manifest" 
 			href="/intranet/manifest.json" />
@@ -38,7 +43,13 @@
 		<title>Intranet</title>
 	</head>
 	<body>
-		<div class="container">
+		<div id="loader">
+			<div class="loader">
+				<i class="fas fa-cog fa-spin fa-5x"></i>
+			</div>
+		</div>
+
+		<div class="container d-none" id="root_div">
 			<ul class="list-unstyled">
 				<li class="my-4">
 					<a href="clientes" class="h2" target="_blank">1.- <i class="fas fa-users"></i> Clientes</a>

@@ -1,24 +1,51 @@
 <?php
-	include '../../connection.php';
+	include '../../../con_intranet.php';
 
 	include 'funciones.php';
 	
 	$usuario    = $_POST['usuario'];
 	$contraseña = $_POST['contraseña'];
 
+	$data = new stdClass;
+
 	if ( usuario_existe() )
 	{
 		if ( contraseña_coincide() )
 		{
-			$data = 'El usuario y la contraseña son válidos';
+			$data->responde = 'El usuario y la contrasena son correctos';
+
+			$query = "SELECT
+				ID 
+
+			FROM usuarios 
+
+			WHERE 
+
+			usuario = '$usuario'";
+
+			$usuario_ID = $mysql->query( $query )->fetch_object()->ID;
+
+			$sesion = md5( date( 'Y-m-d H:i:s' ) );
+
+			$query = "INSERT INTO sesiones (
+				usuario,
+				sesion
+			) VALUES (
+				'$usuario_ID',
+				'$sesion'
+			)";
+
+			$mysql->query( $query );
+
+			$data->sesion = $sesion;
 		}else
 		{
-			$data = 'La contraseña es incorrecta';
+			$data->responde = 'La contrasena es incorrecta';
 		}
 	}else
 	{
-		$data = 'El usuario no existe';
+		$data->responde = 'El usuario no existe';
 	}
 
-	echo $data;
+	echo json_encode( $data );
 ?>

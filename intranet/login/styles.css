@@ -1,5 +1,17 @@
-body
+body { background: #f0f0f0; }
+
+@media ( min-width: 768px ) 
 {
-	padding-top: 75px;
-	background: #f0f0f0;
+	.pump {
+		height: 75px; 
+		width: 100%;
+	}	
+}
+
+@media ( max-width: 768px ) 
+{
+	.pump {
+		height: 15px; 
+		width: 100%;
+	}	
 }
