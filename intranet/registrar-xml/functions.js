@@ -1,11 +1,6 @@
-// var cliente;
-// var ejercicio;;
-// var periodo = '01';
-// var tipo = 'xml-recibidos/xml';
+check_cookie();
 
 var xml_emitidos = [];
-
-init();
 
 function init()
 {
@@ -19,6 +14,9 @@ function init()
 				<option value="${ r[i].RFC }">${ r[i].cliente }</option>
 			`;
 		}
+
+	 	document.getElementById( 'root_div' ).classList.remove( 'd-none' );
+		document.getElementById( 'loader' ).classList.add( 'd-none' );
 	});
 }
 
@@ -923,8 +921,7 @@ function check_cookie()
  				window.location.href = 'https://dctprime.com/intranet/login';
  			}else
  			{
-			 	document.getElementById( 'root_div' ).classList.remove( 'd-none' );
-				document.getElementById( 'loader' ).classList.add( 'd-none' );
+ 				init();
  			}
  		})
 	}else

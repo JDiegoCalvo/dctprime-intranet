@@ -32,189 +32,201 @@
 			integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" 
 			crossorigin="anonymous" />
 
+		<link 
+			rel="stylesheet" 
+			href="styles.css" />
+
 		<title>Desglose de impuestos</title>
 	</head>
 	<body>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-			<a class="navbar-brand" href="">Intranet</a>
-
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="../cargar-xml">Cargar XML</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="../registrar-xml">Registrar XML</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="../impuestos">Impuestos</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" href="../desglose">Desglose de impuestos</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="../registrar">Agregar cuenta</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" target="_blank" href="../balanza">Balanza de comprobación</a>
-					</li>
-				</ul>
+		<div id="loader">
+			<div class="loader">
+				<i class="fas fa-cog fa-spin fa-5x"></i>
 			</div>
-		</nav>
+		</div>
 
-		<div class="container my-5" id="elegir_cliente">
-			<div class="row">
-				<div class="col-md-7 mx-auto my-5">
-					<div class="card shadow">
-						<h5 class="card-header">Elegir Cliente</h5>
-						<div class="card-body">
-							<form id="seleccionar">
-								<div class="form-row">
-									<div class="form-group col-md-4">
-										<label>Cliente</label>
-										<select class="form-control" name="cliente" id="clientes"></select>
+		<div id="root_div" class="d-none">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+				<a class="navbar-brand" href="">Intranet</a>
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="../cargar-xml">Cargar XML</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../registrar-xml">Registrar XML</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../impuestos">Impuestos</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" href="../desglose">Desglose de impuestos</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../registrar">Agregar cuenta</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" target="_blank" href="../balanza">Balanza de comprobación</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+
+			<div class="container my-5" id="elegir_cliente">
+				<div class="row">
+					<div class="col-md-7 mx-auto my-5">
+						<div class="card shadow">
+							<h5 class="card-header">Elegir Cliente</h5>
+							<div class="card-body">
+								<form id="seleccionar">
+									<div class="form-row">
+										<div class="form-group col-md-4">
+											<label>Cliente</label>
+											<select class="form-control" name="cliente" id="clientes"></select>
+										</div>
+										<div class="form-group col-md-4">
+											<label>Ejercicio</label>
+											<select class="form-control" name="ejercicio" id="ejercicio">
+												<option>2020</option>
+												<option>2019</option>
+												<option>2018</option>
+												<option>2017</option>
+												<option>2016</option>
+												<option>2015</option>
+											</select>
+										</div>
+										<div class="form-group col-md-4">
+											<label>Periodo</label>
+											<select class="form-control" name="periodo" id="periodo">
+												<optgroup label="Mensual">
+													<option value="01">01 - Enero</option>
+													<option value="02">02 - Febrero</option>
+													<option value="03">03 - Marzo</option>
+													<option value="04">04 - Abril</option>
+													<option value="05">05 - Mayo</option>
+													<option value="06">06 - Junio</option>
+													<option value="07">07 - Julio</option>
+													<option value="08">08 - Agosto</option>
+													<option value="09">09 - Septiembre</option>
+													<option value="10">10 - Octubre</option>
+													<option value="11">11 - Noviembre</option>
+													<option value="12">12 - Diciembre</option>
+												</optgroup>
+												<optgroup label="Bimestral">
+													<option value="01">01 - Bimestre (ene-feb)</option>
+													<option value="02">02 - Bimestre (mar-abr)</option>
+													<option value="03">03 - Bimestre (may-jun)</option>
+													<option value="04">04 - Bimestre (jul-ago)</option>
+													<option value="05">05 - Bimestre (sep-oct)</option>
+													<option value="06">06 - Bimestre (nov-dic)</option>
+												</optgroup>
+											</select>
+										</div>
 									</div>
-									<div class="form-group col-md-4">
-										<label>Ejercicio</label>
-										<select class="form-control" name="ejercicio" id="ejercicio">
-											<option>2020</option>
-											<option>2019</option>
-											<option>2018</option>
-											<option>2017</option>
-											<option>2016</option>
-											<option>2015</option>
-										</select>
-									</div>
-									<div class="form-group col-md-4">
-										<label>Periodo</label>
-										<select class="form-control" name="periodo" id="periodo">
-											<optgroup label="Mensual">
-												<option value="01">01 - Enero</option>
-												<option value="02">02 - Febrero</option>
-												<option value="03">03 - Marzo</option>
-												<option value="04">04 - Abril</option>
-												<option value="05">05 - Mayo</option>
-												<option value="06">06 - Junio</option>
-												<option value="07">07 - Julio</option>
-												<option value="08">08 - Agosto</option>
-												<option value="09">09 - Septiembre</option>
-												<option value="10">10 - Octubre</option>
-												<option value="11">11 - Noviembre</option>
-												<option value="12">12 - Diciembre</option>
-											</optgroup>
-											<optgroup label="Bimestral">
-												<option value="01">01 - Bimestre (ene-feb)</option>
-												<option value="02">02 - Bimestre (mar-abr)</option>
-												<option value="03">03 - Bimestre (may-jun)</option>
-												<option value="04">04 - Bimestre (jul-ago)</option>
-												<option value="05">05 - Bimestre (sep-oct)</option>
-												<option value="06">06 - Bimestre (nov-dic)</option>
-											</optgroup>
-										</select>
-									</div>
-								</div>
-								<button class="btn btn-success">Aceptar</button>
-							</form>
+									<button class="btn btn-success">Aceptar</button>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="container my-5 d-none" id="desglose">
-			<div class="card">
-				<h5 class="card-header"><button class="btn btn-outline-secondary btn-sm" type="button" id="regresar_btn">Regresar</button> Desglose de impuestos</h5>
-				<div class="card-body">
-					<p class="mb-0 h5 text-center" id="cliente_elegido"></p>
-					<p class="mb-5 h6 text-center" id="periodo_y_ejercicio"></p>
-					<table class="table table-sm table-hover" id="ISR">
-						<thead>
-							<tr>
-								<th></th>
-								<th>Fecha</th>
-								<th>Folio fiscal</th>
-								<th>RFC</th>
-								<th>Gravado</th>
-								<th>Exento</th>
-								<th>ISR retenido</th>
-							</tr>
-						</thead>
-						<tbody></tbody>
-						<tfoot></tfoot>
-					</table>
-					<table class="table table-sm table-hover">
-						<tbody>
-							<tr>
-								<td>Ingresos gravados al 16%</td>
-								<td class="text-right" id="general"></td>
-							</tr>
-							<tr>
-								<td>Ingresos gravados al 0%</td>
-								<td class="text-right" id="cero"></td>
-							</tr>
-							<tr>
-								<td>Ingresos exentos</td>
-								<td class="text-right" id="exento"></td>
-							</tr>
-							<tr>
-								<td>Ingresos totales</td>
-								<td class="text-right" id="total"></td>
-							</tr>
-							<tr>
-								<td>Proporción</td>
-								<th class="text-right" id="proporcion"></th>
-							</tr>
-							<tr>
-								<td>IVA por acreditar</td>
-								<th class="text-right" id="IVA_por_acreditar"></th>
-							</tr>
-							<tr>
-								<td>IVA acreditable</td>
-								<td class="text-right" id="IVA_acreditable"></td>
-							</tr>
-							<tr>
-								<th>IVA deducible</th>
-								<th class="text-right" id="IVA_deducible"></th>
-							</tr>
-						</tbody>
-					</table>
-					<table class="table table-sm">
-						<tbody>
-							<tr>
-								<td>Total de CFDIs</td>
-								<td class="text-right" id="CFDIs"></td>
-							</tr>
-							<tr>
-								<td>IVA deducible</td>
-								<td class="text-right" id="IVA_deducible_2"></td>
-							</tr>
-							<tr>
-								<th>Deducciones autorizadas del periodo</th>
-								<th class="text-right" id="deducciones_autorizadas"></th>
-							</tr>
-						</tbody>
-					</table>
-					<table class="table table-sm table-hover" id="IVA">
-						<thead>
-							<tr>
-								<th></th>
-								<th>Fecha</th>
-								<th>Folio fiscal</th>
-								<th>RFC</th>
-								<th>General</th>
-								<th>Cero</th>
-								<th>Exento</th>
-								<th>IVA retenido</th>
-							</tr>
-						</thead>
-						<tbody></tbody>
-						<tfoot></tfoot>
-					</table>
+			<div class="container my-5 d-none" id="desglose">
+				<div class="card">
+					<h5 class="card-header"><button class="btn btn-outline-secondary btn-sm" type="button" id="regresar_btn">Regresar</button> Desglose de impuestos</h5>
+					<div class="card-body">
+						<p class="mb-0 h5 text-center" id="cliente_elegido"></p>
+						<p class="mb-5 h6 text-center" id="periodo_y_ejercicio"></p>
+						<table class="table table-sm table-hover" id="ISR">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Fecha</th>
+									<th>Folio fiscal</th>
+									<th>RFC</th>
+									<th>Gravado</th>
+									<th>Exento</th>
+									<th>ISR retenido</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+							<tfoot></tfoot>
+						</table>
+						<table class="table table-sm table-hover">
+							<tbody>
+								<tr>
+									<td>Ingresos gravados al 16%</td>
+									<td class="text-right" id="general"></td>
+								</tr>
+								<tr>
+									<td>Ingresos gravados al 0%</td>
+									<td class="text-right" id="cero"></td>
+								</tr>
+								<tr>
+									<td>Ingresos exentos</td>
+									<td class="text-right" id="exento"></td>
+								</tr>
+								<tr>
+									<td>Ingresos totales</td>
+									<td class="text-right" id="total"></td>
+								</tr>
+								<tr>
+									<td>Proporción</td>
+									<th class="text-right" id="proporcion"></th>
+								</tr>
+								<tr>
+									<td>IVA por acreditar</td>
+									<th class="text-right" id="IVA_por_acreditar"></th>
+								</tr>
+								<tr>
+									<td>IVA acreditable</td>
+									<td class="text-right" id="IVA_acreditable"></td>
+								</tr>
+								<tr>
+									<th>IVA deducible</th>
+									<th class="text-right" id="IVA_deducible"></th>
+								</tr>
+							</tbody>
+						</table>
+						<table class="table table-sm">
+							<tbody>
+								<tr>
+									<td>Total de CFDIs</td>
+									<td class="text-right" id="CFDIs"></td>
+								</tr>
+								<tr>
+									<td>IVA deducible</td>
+									<td class="text-right" id="IVA_deducible_2"></td>
+								</tr>
+								<tr>
+									<th>Deducciones autorizadas del periodo</th>
+									<th class="text-right" id="deducciones_autorizadas"></th>
+								</tr>
+							</tbody>
+						</table>
+						<table class="table table-sm table-hover" id="IVA">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Fecha</th>
+									<th>Folio fiscal</th>
+									<th>RFC</th>
+									<th>General</th>
+									<th>Cero</th>
+									<th>Exento</th>
+									<th>IVA retenido</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+							<tfoot></tfoot>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

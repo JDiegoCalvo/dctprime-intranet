@@ -2,7 +2,7 @@ check_cookie();
 
 function clientes()
 {	
- 	document.getElementById( 'root_div' ).classList.add( 'd-none' );
+	document.getElementById( 'root_div' ).classList.add( 'd-none' );
 	document.getElementById( 'loader' ).classList.remove( 'd-none' );
 
 	var data = new FormData();

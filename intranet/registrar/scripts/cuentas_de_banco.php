@@ -1,5 +1,5 @@
 <?php
-	include '../../connection.php';
+	include '../../../con_intranet.php';
 
 	$cliente = $_POST['cliente'];
 

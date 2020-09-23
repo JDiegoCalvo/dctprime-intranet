@@ -32,220 +32,96 @@
 			integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" 
 			crossorigin="anonymous" />
 
+		<link 
+			rel="stylesheet" 
+			href="styles.css" />
+
 		<title>Registrar movimiento</title>
 	</head>
 	<body>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-			<a class="navbar-brand" href="">Intranet</a>
-
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="../cargar-xml">Cargar XML</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="../registrar-xml">Registrar XML</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="../impuestos">Impuestos</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="../desglose">Desglose de impuestos</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" href="../registrar">Agregar cuenta</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" target="_blank" href="../balanza">Balanza de comprobación</a>
-					</li>
-				</ul>
+		<div id="loader">
+			<div class="loader">
+				<i class="fas fa-cog fa-spin fa-5x"></i>
 			</div>
-		</nav>
+		</div>
 
-		<div class="container my-5" id="agregar_cuentas">
-			<div class="row">
-				<div class="col-md-6 my-3">
-					<div class="card shadow">
-						<h5 class="card-header">Agregar cuenta Banco/TDC/Terceros</h5>
-						<div class="card-body">
-							<form id="agregar_cuenta_banco">
-								<div class="form-group">
-									<label>Cliente</label>
-									<select class="form-control clientes" name="cliente"></select>
-								</div>
-								<div class="form-group">
-									<label>Cuenta</label>
-									<select class="form-control" name="cuenta">
-										<option value="102.01">Bancos nacionales</option>
-										<option value="102.02">Bancos extranjeros</option>
-										<option value="202.01">Documentos por pagar bancario y financiero nacional</option>
-										<option value="202.02">Documentos por pagar bancario y financiero extranjero</option>
-										<option value="217.01">Pagos realizados por cuenta de terceros</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label>Nombre</label>
-									<input type="text" class="form-control" autocomplete="off" name="nombre" required>
-								</div>
-								<div class="form-group">
-									<label>Otro</label>
-									<input type="text" class="form-control" autocomplete="off" name="otro" placeholder="XXXX" required>
-								</div>
-								<button class="btn btn-primary">Registrar</button>
-							</form>
+		<div id="root_div" class="d-none">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+				<a class="navbar-brand" href="">Intranet</a>
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="../cargar-xml">Cargar XML</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../registrar-xml">Registrar XML</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../impuestos">Impuestos</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../desglose">Desglose de impuestos</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" href="../registrar">Agregar cuenta</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" target="_blank" href="../balanza">Balanza de comprobación</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+
+			<div class="container my-5" id="agregar_cuentas">
+				<div class="row">
+					<div class="col-md-6 my-3">
+						<div class="card shadow">
+							<h5 class="card-header">Agregar cuenta Banco/TDC/Terceros</h5>
+							<div class="card-body">
+								<form id="agregar_cuenta_banco">
+									<div class="form-group">
+										<label>Cliente</label>
+										<select class="form-control clientes" name="cliente"></select>
+									</div>
+									<div class="form-group">
+										<label>Cuenta</label>
+										<select class="form-control" name="cuenta">
+											<option value="102.01">Bancos nacionales</option>
+											<option value="102.02">Bancos extranjeros</option>
+											<option value="202.01">Documentos por pagar bancario y financiero nacional</option>
+											<option value="202.02">Documentos por pagar bancario y financiero extranjero</option>
+											<option value="217.01">Pagos realizados por cuenta de terceros</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label>Nombre</label>
+										<input type="text" class="form-control" autocomplete="off" name="nombre" required>
+									</div>
+									<div class="form-group">
+										<label>Otro</label>
+										<input type="text" class="form-control" autocomplete="off" name="otro" placeholder="XXXX" required>
+									</div>
+									<button class="btn btn-primary">Registrar</button>
+								</form>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-6 my-3">
-					<div class="card shadow">
-						<h5 class="card-header">ISR causado</h5>
-						<div class="card-body">
-							<form id="isr_causado">
-								<div class="form-group">
-									<label>Cliente</label>
-									<select class="form-control clientes" name="cliente"></select>
-								</div>
-								<div class="form-group">
-									<label>Ejercicio</label>
-									<select class="form-control" name="ejercicio">
-										<option>2020</option>
-										<option>2019</option>
-										<option>2018</option>
-										<option>2017</option>
-										<option>2016</option>
-										<option>2015</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label>Periodo</label>
-									<select class="form-control" name="periodo">
-										<option>01</option>
-										<option>02</option>
-										<option>03</option>
-										<option>04</option>
-										<option>05</option>
-										<option>06</option>
-										<option>07</option>
-										<option>08</option>
-										<option>09</option>
-										<option>10</option>
-										<option>11</option>
-										<option>12</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label>ISR causado</label>
-									<input type="text" class="form-control" autocomplete="off" name="importe" placeholder="Importe" required>
-								</div>
-								<button class="btn btn-primary">Registrar</button>
-							</form>
-						</div>
-					</div>	
-				</div>
-				<div class="col-md-6 my-3">
-					<div class="card shadow">
-						<h5 class="card-header">Aplicar proporción de IVA a pólizas</h5>
-						<div class="card-body">
-							<form id="aplicar_factor_IVA_a_polizas">
-								<div class="form-group">
-									<label>Cliente</label>
-									<select class="form-control clientes" name="cliente"></select>
-								</div>
-								<div class="form-group">
-									<label>Ejercicio</label>
-									<select class="form-control" name="ejercicio">
-										<option>2020</option>
-										<option>2019</option>
-										<option>2018</option>
-										<option>2017</option>
-										<option>2016</option>
-										<option>2015</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label>Periodo</label>
-									<select class="form-control" name="periodo">
-										<option>01</option>
-										<option>02</option>
-										<option>03</option>
-										<option>04</option>
-										<option>05</option>
-										<option>06</option>
-										<option>07</option>
-										<option>08</option>
-										<option>09</option>
-										<option>10</option>
-										<option>11</option>
-										<option>12</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label>Factor</label>
-									<input type="text" class="form-control" autocomplete="off" name="factor" value="1.0000" required>
-								</div>
-								Aún no sirve
-							</form>
-						</div>
-					</div>	
-				</div>
-				<div class="col-md-6 my-3">
-					<div class="card shadow">
-						<h5 class="card-header">Cerrar periodo IVA</h5>
-						<div class="card-body">
-							<form id="cerrar_periodo_IVA">
-								<div class="form-group">
-									<label>Cliente</label>
-									<select class="form-control clientes" name="cliente"></select>
-								</div>
-								<div class="form-group">
-									<label>Ejercicio</label>
-									<select class="form-control" name="ejercicio">
-										<option>2020</option>
-										<option>2019</option>
-										<option>2018</option>
-										<option>2017</option>
-										<option>2016</option>
-										<option>2015</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label>Periodo</label>
-									<select class="form-control" name="periodo">
-										<option>01</option>
-										<option>02</option>
-										<option>03</option>
-										<option>04</option>
-										<option>05</option>
-										<option>06</option>
-										<option>07</option>
-										<option>08</option>
-										<option>09</option>
-										<option>10</option>
-										<option>11</option>
-										<option>12</option>
-									</select>
-								</div>
-								<button class="btn btn-primary">Registrar</button>
-							</form>
-						</div>
-					</div>	
-				</div>
-				<div class="col-md-6 my-3">
-					<div class="card shadow">
-						<h5 class="card-header">Otros ingresos sin CFDI</h5>
-						<div class="card-body">
-							<form id="otros_ingresos_sin_CFDI">
-								<div class="form-group">
-									<label>Cliente</label>
-									<select class="form-control clientes" name="cliente" id="OIClientes"></select>
-								</div>
-								<div class="form-row">
-									<div class="form-group col-md-4">
+					<div class="col-md-6 my-3">
+						<div class="card shadow">
+							<h5 class="card-header">ISR causado</h5>
+							<div class="card-body">
+								<form id="isr_causado">
+									<div class="form-group">
+										<label>Cliente</label>
+										<select class="form-control clientes" name="cliente"></select>
+									</div>
+									<div class="form-group">
 										<label>Ejercicio</label>
 										<select class="form-control" name="ejercicio">
 											<option>2020</option>
@@ -256,7 +132,7 @@
 											<option>2015</option>
 										</select>
 									</div>
-									<div class="form-group col-md-4">
+									<div class="form-group">
 										<label>Periodo</label>
 										<select class="form-control" name="periodo">
 											<option>01</option>
@@ -273,45 +149,25 @@
 											<option>12</option>
 										</select>
 									</div>
-									<div class="form-group col-md-4">
-										<label>Día</label>
-										<input type="number" class="form-control" name="dia" required>
+									<div class="form-group">
+										<label>ISR causado</label>
+										<input type="text" class="form-control" autocomplete="off" name="importe" placeholder="Importe" required>
 									</div>
-								</div>
-								<div class="form-group">
-									<label>Forma de pago</label>
-									<select class="form-control" name="forma_de_pago">
-										<optgroup label="Efectivo" id="efectivo_1">
-											<option value="101,01">Caja y efectivo</option>
-										</optgroup>
-										<optgroup label="Tarjeta de crédito" id="TDC_1"></optgroup>
-										<optgroup label="Terceros" id="terceros_1"></optgroup>
-									</select>
-								</div>
-								<div class="form-group">
-									<label>Importe</label>
-									<input type="number" step="0.01" class="form-control" name="importe" required>
-								</div>
-								<div class="form-group">
-									<label>Descripción</label>
-									<input type="text" class="form-control" autocomplete="off" name="descripcion" required>
-								</div>
-								<button class="btn btn-primary">Registrar</button>
-							</form>
-						</div>
-					</div>	
-				</div>
-				<div class="col-md-6 my-3">
-					<div class="card shadow">
-						<h5 class="card-header">Otros gastos sin CFDI</h5>
-						<div class="card-body">
-							<form id="otros_gastos_sin_CFDI">
-								<div class="form-group">
-									<label>Cliente</label>
-									<select class="form-control clientes" name="cliente" id="OGClientes"></select>
-								</div>
-								<div class="form-row">
-									<div class="form-group col-md-4">
+									<button class="btn btn-primary">Registrar</button>
+								</form>
+							</div>
+						</div>	
+					</div>
+					<div class="col-md-6 my-3">
+						<div class="card shadow">
+							<h5 class="card-header">Aplicar proporción de IVA a pólizas</h5>
+							<div class="card-body">
+								<form id="aplicar_factor_IVA_a_polizas">
+									<div class="form-group">
+										<label>Cliente</label>
+										<select class="form-control clientes" name="cliente"></select>
+									</div>
+									<div class="form-group">
 										<label>Ejercicio</label>
 										<select class="form-control" name="ejercicio">
 											<option>2020</option>
@@ -322,7 +178,7 @@
 											<option>2015</option>
 										</select>
 									</div>
-									<div class="form-group col-md-4">
+									<div class="form-group">
 										<label>Periodo</label>
 										<select class="form-control" name="periodo">
 											<option>01</option>
@@ -339,33 +195,189 @@
 											<option>12</option>
 										</select>
 									</div>
-									<div class="form-group col-md-4">
-										<label>Día</label>
-										<input type="number" class="form-control" name="dia" required>
+									<div class="form-group">
+										<label>Factor</label>
+										<input type="text" class="form-control" autocomplete="off" name="factor" value="1.0000" required>
 									</div>
-								</div>
-								<div class="form-group">
-									<label>Forma de pago</label>
-									<select class="form-control" name="forma_de_pago">
-										<optgroup label="Efectivo" id="efectivo_2">
-											<option value="101,01">Caja y efectivo</option>
-										</optgroup>
-										<optgroup label="Tarjeta de crédito" id="TDC_2"></optgroup>
-										<optgroup label="Terceros" id="terceros_2"></optgroup>
-									</select>
-								</div>
-								<div class="form-group">
-									<label>Importe</label>
-									<input type="number" step="0.01" class="form-control" name="importe" required>
-								</div>
-								<div class="form-group">
-									<label>Descripción</label>
-									<input type="text" class="form-control" autocomplete="off" name="descripcion" required>
-								</div>
-								<button class="btn btn-primary">Registrar</button>
-							</form>
-						</div>
-					</div>	
+									Aún no sirve
+								</form>
+							</div>
+						</div>	
+					</div>
+					<div class="col-md-6 my-3">
+						<div class="card shadow">
+							<h5 class="card-header">Cerrar periodo IVA</h5>
+							<div class="card-body">
+								<form id="cerrar_periodo_IVA">
+									<div class="form-group">
+										<label>Cliente</label>
+										<select class="form-control clientes" name="cliente"></select>
+									</div>
+									<div class="form-group">
+										<label>Ejercicio</label>
+										<select class="form-control" name="ejercicio">
+											<option>2020</option>
+											<option>2019</option>
+											<option>2018</option>
+											<option>2017</option>
+											<option>2016</option>
+											<option>2015</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label>Periodo</label>
+										<select class="form-control" name="periodo">
+											<option>01</option>
+											<option>02</option>
+											<option>03</option>
+											<option>04</option>
+											<option>05</option>
+											<option>06</option>
+											<option>07</option>
+											<option>08</option>
+											<option>09</option>
+											<option>10</option>
+											<option>11</option>
+											<option>12</option>
+										</select>
+									</div>
+									<button class="btn btn-primary">Registrar</button>
+								</form>
+							</div>
+						</div>	
+					</div>
+					<div class="col-md-6 my-3">
+						<div class="card shadow">
+							<h5 class="card-header">Otros ingresos sin CFDI</h5>
+							<div class="card-body">
+								<form id="otros_ingresos_sin_CFDI">
+									<div class="form-group">
+										<label>Cliente</label>
+										<select class="form-control clientes" name="cliente" id="OIClientes"></select>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-4">
+											<label>Ejercicio</label>
+											<select class="form-control" name="ejercicio">
+												<option>2020</option>
+												<option>2019</option>
+												<option>2018</option>
+												<option>2017</option>
+												<option>2016</option>
+												<option>2015</option>
+											</select>
+										</div>
+										<div class="form-group col-md-4">
+											<label>Periodo</label>
+											<select class="form-control" name="periodo">
+												<option>01</option>
+												<option>02</option>
+												<option>03</option>
+												<option>04</option>
+												<option>05</option>
+												<option>06</option>
+												<option>07</option>
+												<option>08</option>
+												<option>09</option>
+												<option>10</option>
+												<option>11</option>
+												<option>12</option>
+											</select>
+										</div>
+										<div class="form-group col-md-4">
+											<label>Día</label>
+											<input type="number" class="form-control" name="dia" required>
+										</div>
+									</div>
+									<div class="form-group">
+										<label>Forma de pago</label>
+										<select class="form-control" name="forma_de_pago">
+											<optgroup label="Efectivo" id="efectivo_1">
+												<option value="101,01">Caja y efectivo</option>
+											</optgroup>
+											<optgroup label="Tarjeta de crédito" id="TDC_1"></optgroup>
+											<optgroup label="Terceros" id="terceros_1"></optgroup>
+										</select>
+									</div>
+									<div class="form-group">
+										<label>Importe</label>
+										<input type="number" step="0.01" class="form-control" name="importe" required>
+									</div>
+									<div class="form-group">
+										<label>Descripción</label>
+										<input type="text" class="form-control" autocomplete="off" name="descripcion" required>
+									</div>
+									<button class="btn btn-primary">Registrar</button>
+								</form>
+							</div>
+						</div>	
+					</div>
+					<div class="col-md-6 my-3">
+						<div class="card shadow">
+							<h5 class="card-header">Otros gastos sin CFDI</h5>
+							<div class="card-body">
+								<form id="otros_gastos_sin_CFDI">
+									<div class="form-group">
+										<label>Cliente</label>
+										<select class="form-control clientes" name="cliente" id="OGClientes"></select>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-4">
+											<label>Ejercicio</label>
+											<select class="form-control" name="ejercicio">
+												<option>2020</option>
+												<option>2019</option>
+												<option>2018</option>
+												<option>2017</option>
+												<option>2016</option>
+												<option>2015</option>
+											</select>
+										</div>
+										<div class="form-group col-md-4">
+											<label>Periodo</label>
+											<select class="form-control" name="periodo">
+												<option>01</option>
+												<option>02</option>
+												<option>03</option>
+												<option>04</option>
+												<option>05</option>
+												<option>06</option>
+												<option>07</option>
+												<option>08</option>
+												<option>09</option>
+												<option>10</option>
+												<option>11</option>
+												<option>12</option>
+											</select>
+										</div>
+										<div class="form-group col-md-4">
+											<label>Día</label>
+											<input type="number" class="form-control" name="dia" required>
+										</div>
+									</div>
+									<div class="form-group">
+										<label>Forma de pago</label>
+										<select class="form-control" name="forma_de_pago">
+											<optgroup label="Efectivo" id="efectivo_2">
+												<option value="101,01">Caja y efectivo</option>
+											</optgroup>
+											<optgroup label="Tarjeta de crédito" id="TDC_2"></optgroup>
+											<optgroup label="Terceros" id="terceros_2"></optgroup>
+										</select>
+									</div>
+									<div class="form-group">
+										<label>Importe</label>
+										<input type="number" step="0.01" class="form-control" name="importe" required>
+									</div>
+									<div class="form-group">
+										<label>Descripción</label>
+										<input type="text" class="form-control" autocomplete="off" name="descripcion" required>
+									</div>
+									<button class="btn btn-primary">Registrar</button>
+								</form>
+							</div>
+						</div>	
+					</div>
 				</div>
 			</div>
 		</div>
