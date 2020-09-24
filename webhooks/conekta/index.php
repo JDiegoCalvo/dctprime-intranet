@@ -9,6 +9,10 @@
 	$data = json_decode( $body );
 	http_response_code( 200 ); // Return 200 OK 
 
+	$json_string = json_encode( $data );
+	$file = date( 'Y-m-d H:i:s' ) . '_index.json';
+	file_put_contents( $file, $json_string );
+
 	if ( $data->type == 'charge.paid' )
 	{
 		$conekta = $data->data->object->customer_id;
@@ -16,11 +20,7 @@
 
 		mail( "jd.calvo@dctprime.com", "Pago confirmado", $msg );
 
-		$json_string = json_encode($data);
-		$file = 'clientes.json';
-		file_put_contents($file, $json_string);
-
-		if ( $data->data->object->payment_method->object == 'bank_transfer_payment' OR $data->data->object->payment_method->object == 'cash_payment' )
+		if ( $data->data->object->payment_method->object == 'bank_transfer_payment' )
 		{
 			$date = date( 'Y-m-d H:i:s' );
 			$amount = floatval( $data->data->object->amount ) / 100;
