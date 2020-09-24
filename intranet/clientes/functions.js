@@ -43,7 +43,9 @@ function clientes()
 					{
 						HTML += `
 							<td>${ r[i].conekta }</td>
-							<td>${ r[i].spei_recurrente }</td>
+							<td>
+								<a href="whatsapp://send?text=Titular:%20CC%20Manati,%20S.A.%20De%20C.V.%0ARFC:%20CMA150512PX5%0ABanco:%20STP%0ACLABE:%20${ r[i].spei_recurrente }&phone=${ r[i].telefono }" class="btn btn-link p-0 font-size-sm">${ r[i].spei_recurrente }</a>
+							</td>
 						`;
 					}else
 					{

@@ -10,6 +10,7 @@
 		nombre, 
 		primer_apellido, 
 		segundo_apellido,
+		telefono,
 		facturapi,
 		conekta,
 		spei_recurrente,
@@ -29,6 +30,7 @@
 				'num_servicio' => $row['num_servicio'],
 				'RFC'          => $row['RFC'],
 				'nombre'       => $row['denominacion'],
+				'telefono'     => $row['telefono'],
 				'facturapi'    => $row['facturapi'],
 				'conekta'      => $row['conekta'],
 				'spei_recurrente' => $row['spei_recurrente'],
@@ -42,6 +44,7 @@
 				'nombre'       => $row['nombre']          . ' ' .
 						    	  $row['primer_apellido'] . ' ' .
 								  $row['segundo_apellido'],
+				'telefono'     => $row['telefono'],
 				'facturapi'    => $row['facturapi'],
 				'conekta'      => $row['conekta'],
 				'spei_recurrente' => $row['spei_recurrente'],
