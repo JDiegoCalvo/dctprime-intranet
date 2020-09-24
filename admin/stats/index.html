@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta 
+			charset="utf-8" />
+
+		<meta 
+			name="viewport" 
+			content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+		<link 
+			rel="apple-touch-icon" 
+			href="https://dctprime.com/images/apple-touch-icon.png" />
+
+		<link 
+			rel="icon" sizes="192x192" 
+			href="https://dctprime.com/images/icon-hires.png" />
+
+		<link 
+			rel="icon" sizes="128x128" 
+			href="https://dctprime.com/images/icon-normal.png" />
+
+		<link 
+			rel="stylesheet" 
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+			integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+			crossorigin="anonymous" />
+
+		<title>Estadísticas</title>
+	</head>
+	<body>
+		<div class="container">
+			<canvas id="myChart" class="canvas"></canvas>
+		</div>
+
+		<script 
+			src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+		<script>
+			fetch( 'scripts/por_edades.php' )
+			.then( res => res.json() )
+			.then( r   => 
+			{
+				var ctx = document.getElementById( 'myChart' );
+				var myChart = new Chart( ctx, {
+					type: 'bar',
+					data: {
+						labels: ['13-17', '18-24', '35-44', '45-54', '55-64', '65+'],
+						datasets: [{
+							label: 'Clientes por edades',
+							data: r,
+							backgroundColor: [
+								'rgba(255, 99, 132, 0.2)',
+								'rgba(54, 162, 235, 0.2)',
+								'rgba(255, 206, 86, 0.2)',
+								'rgba(75, 192, 192, 0.2)',
+								'rgba(153, 102, 255, 0.2)',
+								'rgba(255, 159, 64, 0.2)'
+							],
+							borderColor: [
+								'rgba(255, 99, 132, 1)',
+								'rgba(54, 162, 235, 1)',
+								'rgba(255, 206, 86, 1)',
+								'rgba(75, 192, 192, 1)',
+								'rgba(153, 102, 255, 1)',
+								'rgba(255, 159, 64, 1)'
+							],
+							borderWidth: 1
+						}]
+					},
+					options: {
+						scales: {
+							yAxes: [{
+								ticks: {
+									beginAtZero: true
+								}
+							}]
+						}
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
