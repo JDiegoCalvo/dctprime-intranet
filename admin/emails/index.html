@@ -50,6 +50,22 @@
 				</div>
 			</div>
 		</div>
+		<hr>
+		<div class="container">
+			<div class="card shadow">
+				<div class="card-body overflow-scroll h-450">
+					<form class="form-inline">
+						<div class="form-group">
+							<select class="form-control" id="select_grupo" onchange="grupo();"></select>
+						</div>
+					</form>
+					<hr>
+					<table class="table table-sm" id="table_grupo">
+						<tbody></tbody>
+					</table>	
+				</div>
+			</div>
+		</div>
 
 		<div class="modal fade" id="modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -86,50 +102,56 @@
 							<td>${ r[i].nombre }</td>
 							<td>${ r[i].email }</td>
 							<td>
-								<button class="btn btn-link p-0" onclick="agregar( '${ r[i].email }' )">Agregar</button>
+								<button class="btn btn-link p-0" onclick="abrir_modal( '${ r[i].email }' )">Agregar</button>
 							</td>
 						</tr>
 					`;
 				}
+
+				document.querySelector( '#select_grupo' ).innerHTML = `
+					<option>Selecciona</option>
+				`;
+
+				for ( var i = 0; i < grupos.length; i++ )
+				{
+					document.querySelector( '#select_grupo' ).innerHTML += `
+						<option>${ grupos[i] }</option>
+					`;
+				}
 			});
 
-			function agregar( email ) 
+			function abrir_modal( email ) 
 			{
-				// fetch( 'scripts/emails.php' )
-				// .then( res => res.json() )
-				// .then( r   => 
-				// {
-					var HTML = `
-						<div class="modal-header">
-							<h5 class="modal-title" id="staticBackdropLabel">Agregar email a grupo</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<form id="agregar_form">
-								<div class="form-group">
-									<label>Grupo</label>
-									<select class="form-control" name="grupo">`;
+				var HTML = `
+					<div class="modal-header">
+						<h5 class="modal-title" id="staticBackdropLabel">Agregar email a grupo</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="agregar_form">
+							<div class="form-group">
+								<label>Grupo</label>
+								<select class="form-control" name="grupo">`;
 
-										for ( var i = 0; i < grupos.length; i++ )
-										{
-											HTML += `<option>${ grupos[i] }</option>`;
-										}
-										
-									HTML += `</select>
-								</div>
-								<div class="form-group">
-									<label>Email</label>
-									<input type="email" class="form-control" name="email" value="${ email }">
-								</div>
-								<button class="btn btn-primary">Agregar</button>
-							</form>
-						</div>
-					`;
+									for ( var i = 0; i < grupos.length; i++ )
+									{
+										HTML += `<option>${ grupos[i] }</option>`;
+									}
+									
+								HTML += `</select>
+							</div>
+							<div class="form-group">
+								<label>Email</label>
+								<input type="email" class="form-control" name="email" value="${ email }">
+							</div>
+							<button class="btn btn-primary">Agregar</button>
+						</form>
+					</div>
+				`;
 
-					document.querySelector( '#modal_content' ).innerHTML = HTML;
-				// });
+				document.querySelector( '#modal_content' ).innerHTML = HTML;
 
 				$( '#modal' ).modal( 'show' );
 
@@ -137,13 +159,72 @@
 				{
 					e.preventDefault();
 
-					fetch( 'scripts/agregar.php' )
+					fetch( 'scripts/agregar.php', 
+					{
+						method : 'POST',
+						body   : new FormData( this )
+					})
 					.then( res => res.json() )
 					.then( r   => 
 					{
+						if ( r )
+						{
+							alert( 'Email agregado al grupo.' );
+						}else
+						{
+							alert( 'El email ya está en ese grupo' );
+						}
 
+						$( '#modal' ).modal( 'hide' );
 					});
 				})
+			}
+
+			function grupo() 
+			{
+				var grupo = document.querySelector( '#select_grupo' ).value
+
+				var data = new FormData();
+					data.append( 'grupo', grupo );
+
+				fetch( 'scripts/grupo.php', 
+				{
+					method : 'POST',
+					body   : data
+				})
+				.then( res => res.json() )
+				.then( r   => 
+				{
+					document.querySelector( '#table_grupo tbody' ).innerHTML = '';
+
+					for ( var i = 0; i < r.length; i++ )
+					{
+						document.querySelector( '#table_grupo tbody' ).innerHTML += `
+							<tr>
+								<td>${ r[i].email }</td>
+								<td>
+									<button class="btn btn-link p-0" onclick="eliminar( '${ r[i].ID }' )">Eliminar</button>
+								</td>
+							</tr>
+						`;
+					}
+				});
+			}
+
+			function eliminar( ID ) 
+			{
+				var data = new FormData();
+					data.append( 'ID', ID );
+
+				fetch( 'scripts/eliminar.php', 
+				{
+					method : 'POST',
+					body   : data
+				})
+				.then( r   => 
+				{
+					grupo();
+				});
 			}
 		</script>
 	</body>

@@ -10,7 +10,7 @@
 	http_response_code( 200 ); // Return 200 OK 
 
 	$json_string = json_encode( $data );
-	$file = date( 'Y-m-d H:i:s' ) . '_index.json';
+	$file = date( 'Y-m-d H:i:s' ) . '_spei.json';
 	file_put_contents( $file, $json_string );
 
 	if ( $data->type == 'charge.paid' )

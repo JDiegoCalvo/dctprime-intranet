@@ -38,10 +38,6 @@
 
 		mail( "jd.calvo@dctprime.com", "Pago confirmado", $msg );
 
-		$json_string = json_encode($data);
-		$file = 'clientes.json';
-		file_put_contents($file, $json_string);
-
 		$date = date( 'Y-m-d H:i:s' );
 		$amount = floatval( $data->data->object->amount ) / 100;
 
