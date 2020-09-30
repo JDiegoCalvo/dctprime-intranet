@@ -231,6 +231,20 @@
 			}
 		}
 
+		if ( $tipo == 'xml-emitidos/xml' )
+		{
+
+			$tabla = 'CFDIs_emitidos';
+
+			$tabla_referencias = 'CFDIs_emitidos_referencias';
+		}else if ( $tipo == 'xml-recibidos/xml' )
+		{
+
+			$tabla = 'CFDIs_recibidos';
+
+			$tabla_referencias = 'CFDIs_recibidos_referencias';
+		}		
+
 		if ( $tipo == 'xml-emitidos/xml' OR $tipo == 'xml-recibidos/xml' )
 		{
 			$data = array();

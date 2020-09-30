@@ -67,10 +67,19 @@
 		array_push( $items, array(
 			'quantity' => $row['cantidad'],
 			'product'  => [
-				'description'  => $row['descripcion'],
-				'product_key'  => $row['clave_SAT'],
-				'price'        => $row['precio'],
-				'tax_included' => false
+				"description"   => $row['descripcion'],
+				"product_key"   => '84111502',
+				"price"         => $row['precio'],
+				"tax_included"  => false,
+				"taxes"         => [
+					[
+						"withholding" => false,
+						"type"        => "IVA",
+						"rate"        => 0.16
+					]
+				],
+				"unit_key"      => 'E48',
+				"unit_name"     => 'Unidad de servicio'
 			]
 		));
 
@@ -163,6 +172,7 @@
 		'Content-Type: application/json'
 	]);
 	$output = curl_exec( $ch );
+	curl_close( $ch );
 
 	file_put_contents( '../../../l/' . $hash . '.pdf', $output ); 
 

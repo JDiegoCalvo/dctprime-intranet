@@ -21,7 +21,7 @@
 			"max_amount" => 250000
 		];
 
-		return json_encode( $response );
+		echo json_encode( $response );
 
 	}else if ( $data->type == 'inbound_payment.payment_attempt' )
 	{
@@ -29,7 +29,7 @@
 			"payable"    => true
 		];
 
-		return json_encode( $response );
+		echo json_encode( $response );
 
 	}else if ( $data->type = 'charge.paid' )
 	{

@@ -13,14 +13,32 @@
 	$file = date( 'Y-m-d H:i:s' ) . '_spei.json';
 	file_put_contents( $file, $json_string );
 
-	if ( $data->type == 'charge.paid' )
+	if ( $data->type == 'inbound_payment.lookup' )
+	{
+		$response = [
+			"payable"    => true,
+			"min_amount" => 100,
+			"max_amount" => 250000
+		];
+
+		echo json_encode( $response );
+
+	}else if ( $data->type == 'inbound_payment.payment_attempt' )
+	{
+		$response = [
+			"payable"    => true
+		];
+
+		echo json_encode( $response );
+
+	}else if ( $data->type == 'charge.paid' )
 	{
 		$conekta = $data->data->object->customer_id;
 		$msg     = "Tu pago ha sido comprobado. " . $data->data->object->customer_id;
 
 		mail( "jd.calvo@dctprime.com", "Pago confirmado", $msg );
 
-		if ( $data->data->object->payment_method->object == 'bank_transfer_payment' )
+		if ( $data->data->object->payment_method->object == 'bank_transfer_payment' OR $data->data->object->payment_method->object == 'cash_payment' )
 		{
 			$date = date( 'Y-m-d H:i:s' );
 			$amount = floatval( $data->data->object->amount ) / 100;
